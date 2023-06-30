@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    #consonants-container {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 5px;
+    }
+
+    .button-container {
+    display: flex;
+    }
+
+    .half-page-button {
+        flex: 1;
+        margin: 10px;
+        font-size: 30px;
+        background-color: lightgray;
+        cursor: pointer;
+    }
+    #choice {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 5px;
+      
+    }
+    #info-area {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 5px;
+      padding-bottom: 200px;
+    }
+
+    .tile {
+      border: 1px solid black;
+      padding: 1px;
+      text-align: center;
+      cursor: pointer;
+      font-size: 35px;
+      background-color: aqua;
+    }
+    .tile.selected {
+      background-color: lightgray;
+    }
+    .first-item-tile{
+        font-size: 20px;
+
+    }
+    .second-item-tile{
+        font-size: 20px;
+        font-weight: bold;
+
+    }
+    #playSound{
+        font-size: 40px;
+        border-radius: 10px;
+        background-color: aqua;
+        padding: 5px;
+        padding-right: 10px;
+        margin: 5px;
+        margin-bottom: 10px;
+    }
+
+    #test-area{
+        margin-bottom: 60px;
+    }
+    #showConsonants, #showVowels{
+        flex: 1;
+        margin: 10px;
+        font-size: 30px;
+        background-color: aqua;
+        cursor: pointer;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    #sort-learning-elements{
+        border-radius: 10px;
+        background-color: lightgray;
+        padding: 5px;
+        padding-right: 10px;
+        margin: 5px;
+        margin-bottom: 10px;
+
+    }
+  </style>
+</head>
+<body>
+    <h1><b>1) Click Consonants or Vowels </b></h1> 
+    <h1><b>2) Click the symbols you want to learn</b></h1>
+    <h1><b>3) Click Learn or Test button</b></h1> 
+
+    <div class="button-container">
+        <button onclick="createLearningElements('consonants')" id="showConsonants">Consonants</button>
+        <button onclick="createLearningElements('vowels')" id="showVowels">Vowels</button>
+    </div>
+    <button id="sort-learning-elements"><b>🔄abc</b></button>  <b class="sort-learning-elements">Toggle MOST COMMON / ALPHABETIC</b>
+  
+  <div id="consonants-container">
+    <!-- consonants will be dynamically inserted here -->
+  </div>
+
+  <div class="button-container">
+    <button id="mode2" class="half-page-button">Learn</button>
+    <button id="mode1" class="half-page-button">Test</button>
+  </div>
+
+  <div id="test-area" style="display:none;">
+    <h1><b>1) Click the sound button. </b></h1> 
+    <h1><b>2) Click the corresponding symbol</b></h1>
+    <h1><b>3) Repeat for next sound.</b></h1> 
+    <h1><b>Click test button again to reset score</b></h1>
+        <div >
+            <button id="playSound" style="display: inline;">&#128266; </button>
+            <p style="display: inline; font-size: 30px; font-weight: bold;" id="test-result"></p>
+            <p style="display: inline; font-size: 30px;" id="score"></p>
+        </div>
+        
+    
+        <span id="choice"></span>
+  </div>
+
+  <div id="info-area" style="display:none;">
+    <!-- selected consonant info will be dynamically inserted here -->
+  </div>
+
+  <script>
+var prefixConsonants = "https://thaiarc.tu.ac.th/thai/";
+  //updated innerbox sounds
+    const consonants = [
+  { letter: 'ก', innerBox: 'g like in go', audio: prefixConsonants + 'csounds/k_kai.wav' },
+  { letter: 'ข', innerBox: 'kh like in sky', audio: prefixConsonants + "csounds/kh_khai.wav"  },
+  { letter: 'ฃ', innerBox: 'kh like in sky', audio: prefixConsonants + "csounds/kh_khuat.wav"  },
+  { letter: 'ค', innerBox: 'kh like in Ketchup', audio: prefixConsonants + "csounds/kh_khwai.wav"  },
+  { letter: 'ฅ', innerBox: 'kh like in sky', audio: prefixConsonants + "csounds/kh_khon.wav"  },
+  { letter: 'ฆ', innerBox: 'kh like in sky', audio: prefixConsonants + "csounds/kh_rkng.wav"  },
+  { letter: 'ง', innerBox: 'ng like in sing', audio: prefixConsonants + "csounds/ng_ngu.wav"  },
+  { letter: 'จ', innerBox: 'j like in jump', audio: prefixConsonants + "csounds/j_jan.wav"  },
+  { letter: 'ฉ', innerBox: 'ch like in cheese', audio: prefixConsonants + "csounds/ch_ching.wav"  },
+  { letter: 'ช', innerBox: 'ch like in church', audio: prefixConsonants + "csounds/ch_chang.wav"  },
+  { letter: 'ซ', innerBox: 's like in sun', audio: prefixConsonants + "csounds/s_so.wav"  },
+  { letter: 'ฌ', innerBox: 'ch like in cheese', audio: prefixConsonants + "csounds/ch_cher.wav"  },
+  { letter: 'ญ', innerBox: 'y like in yes', audio: prefixConsonants + "csounds/y_ying.wav"  },
+  { letter: 'ฎ', innerBox: 'd like in dog', audio: prefixConsonants + "csounds/d_chada.wav"  },
+  { letter: 'ฏ', innerBox: 't like in top', audio: prefixConsonants + "csounds/t_patak.wav"  },
+  { letter: 'ฐ', innerBox: 'th like in three', audio: prefixConsonants + "csounds/th_than.wav"  },
+  { letter: 'ฑ', innerBox: 'h like in three', audio: prefixConsonants + "csounds/th_mntho.wav"  },
+  { letter: 'ฒ', innerBox: 'th like in three', audio: prefixConsonants + "csounds/th_thao.wav"  },
+  { letter: 'ณ', innerBox: 'n like in nice', audio: prefixConsonants + "csounds/n_nen.wav"  },
+  { letter: 'ด', innerBox: 'd like in dog', audio: prefixConsonants + "csounds/d_dek.wav"  },
+  { letter: 'ต', innerBox: 't like in top', audio: prefixConsonants + "csounds/t_tao.wav"  },
+  { letter: 'ถ', innerBox: 'th like in three', audio: prefixConsonants + "csounds/th_thung.wav"  },
+  { letter: 'ท', innerBox: 'th like in three', audio: prefixConsonants + "csounds/th_thahn.wav"  },
+  { letter: 'ธ', innerBox: 'th like in three', audio: prefixConsonants + "csounds/th_thong.wav"  },
+  { letter: 'น', innerBox: 'n like in nice', audio: prefixConsonants + "csounds/n_nu.wav"  },
+  { letter: 'บ', innerBox: 'b like in boy', audio: prefixConsonants + "csounds/b_baimai.wav"  },
+  { letter: 'ป', innerBox: 'p like in pen', audio: prefixConsonants + "csounds/p_pla.wav"  },
+  { letter: 'ผ', innerBox: 'ph like in phone', audio: prefixConsonants + "csounds/ph_phung.wav"  },
+  { letter: 'ฝ', innerBox: 'f like in fish', audio: prefixConsonants + "csounds/f_fa.wav"  },
+  { letter: 'พ', innerBox: 'ph like in phone', audio: prefixConsonants + "csounds/ph_phan.wav"  },
+  { letter: 'ฟ', innerBox: 'f like in fish', audio: prefixConsonants + "csounds/f_fan.wav"  },
+  { letter: 'ภ', innerBox: 'ph like in phone', audio: prefixConsonants + "csounds/ph_smpao.wav"  },
+  { letter: 'ม', innerBox: 'm like in man', audio: prefixConsonants + "csounds/m_ma.wav" },
+  { letter: 'ย', innerBox: 'y like in yes', audio: prefixConsonants + "csounds/y_yak.wav"  },
+  { letter: 'ร', innerBox: 'r like in red', audio: prefixConsonants + "csounds/r_rua.wav"  },
+  { letter: 'ล', innerBox: 'l like in love', audio: prefixConsonants + "csounds/l_ling.wav" },
+  { letter: 'ว', innerBox: 'w like in water', audio: prefixConsonants + "csounds/w_waen.wav"  },
+  { letter: 'ศ', innerBox: 's like in sun', audio: prefixConsonants + "csounds/s_sala.wav"  },
+  { letter: 'ษ', innerBox: 's like in sun', audio: prefixConsonants + "csounds/s_rusi.wav" },
+  { letter: 'ส', innerBox: 's like in sun', audio: prefixConsonants + "csounds/s_sua.wav"  },
+  { letter: 'ห', innerBox: 'h like in hot', audio: prefixConsonants + "csounds/h_hib.wav"  },
+  { letter: 'ฬ', innerBox: 'l like in love', audio: prefixConsonants + "csounds/l_chula.wav"  },
+  { letter: 'อ', innerBox: '- ', audio: prefixConsonants + "csounds/a_ang.wav"  },
+  { letter: 'ฮ', innerBox: 'h like in hot', audio: prefixConsonants + "csounds/h_nkhuk.wav" }
+];
+var prefixVowels = 'https://storage.googleapis.com/funtolearnthai/audio/';
+const vowelsAll = [
+  { vowel: '◌ะ', pronunciation: 'a',  audio: prefixVowels + 'vowels/1.mp3', sort: 'short' },
+  { vowel: '◌า', pronunciation: 'aa',  audio: prefixVowels + 'vowels/2.mp3', sort: 'long' },
+  { vowel: '◌ิ', pronunciation: 'i',  audio: prefixVowels + 'vowels/14.mp3', sort: 'short' },
+  { vowel: '◌ี', pronunciation: 'ii',  audio: prefixVowels + 'vowels/15.mp3', sort: 'long' },
+  { vowel: '◌ึ', pronunciation: 'ue',  audio: prefixVowels + 'vowels/16.mp3', sort: 'short' },
+  { vowel: '◌ื', pronunciation: 'euu',  audio: prefixVowels + 'vowels/17.mp3', sort: 'long' },
+  { vowel: '◌ุ', pronunciation: 'u',  audio: prefixVowels + 'vowels/18.mp3', sort: 'short' },
+  { vowel: '◌ู', pronunciation: 'uu',  audio: prefixVowels + 'vowels/19.mp3', sort: 'long' },
+  { vowel: 'เ◌ะ', pronunciation: 'e',  audio: prefixVowels + 'vowels/8.mp3', sort: 'short' },
+  { vowel: 'เ◌', pronunciation: 'ee',  audio: prefixVowels + 'vowels/9.mp3', sort: 'long' },
+  { vowel: 'แ◌ะ', pronunciation: 'ae',  audio: prefixVowels + 'vowels/3.mp3', sort: 'short' },
+  { vowel: 'แ◌', pronunciation: 'aae',  audio: prefixVowels + 'vowels/4.mp3', sort: 'long' },
+  { vowel: 'โ◌ะ', pronunciation: 'o',  audio: prefixVowels + 'vowels/12.mp3', sort: 'short' },
+  { vowel: 'โ◌', pronunciation: 'ooh',  audio: prefixVowels + 'vowels/13.mp3', sort: 'long' },
+  { vowel: 'เ◌าะ', pronunciation: 'aw',  audio: prefixVowels + 'vowels/5.mp3', sort: 'short' },
+  { vowel: '◌อ', pronunciation: 'aaw',  audio: prefixVowels + 'vowels/7.mp3', sort: 'long' },
+  { vowel: 'เ◌อะ', pronunciation: 'uh',  audio: prefixVowels + 'vowels/10.mp3', sort: 'short' },
+  { vowel: 'เ◌อ', pronunciation: 'euh',  audio: prefixVowels + 'vowels/11.mp3', sort: 'long' },
+  // Short diphthongs
+  { vowel: 'เ◌ ียะ', pronunciation: 'ia',  audio: prefixVowels + 'vowels/20.mp3', sort: 'shortdiphthong' },
+  { vowel: 'เ◌ ือะ', pronunciation: 'uea',  audio: prefixVowels + 'vowels/22.mp3', sort: 'shortdiphthong' },
+  { vowel: '◌ัวะ', pronunciation: 'ua',  audio: prefixVowels + 'vowels/63.mp3', sort: 'shortdiphthong' },
+  { vowel: '◌ำ', pronunciation: 'am',  audio: prefixVowels + 'vowels/48.mp3', sort: 'shortdiphthong' },
+  { vowel: 'เ◌า', pronunciation: 'ao',  audio: prefixVowels + 'vowels/45.mp3', sort: 'shortdiphthong' },
+  { vowel: 'ไ◌', pronunciation: 'ai',  audio: prefixVowels + 'vowels/26.mp3', sort: 'shortdiphthong' },
+  { vowel: 'ใ◌', pronunciation: 'ai',  audio: prefixVowels + 'vowels/27.mp3', sort: 'shortdiphthong' },
+
+  // Long diphthongs
+  { vowel: 'เ◌ ีย', pronunciation: 'iia',  audio: prefixVowels + 'vowels/21.mp3', sort: 'longdiphthong' },
+  { vowel: 'เ◌ ือ', pronunciation: 'uuea',  audio: prefixVowels + 'vowels/23.mp3', sort: 'longdiphthong' },
+  { vowel: '◌ัว', pronunciation: 'uua',  audio: prefixVowels + 'vowels/25.mp3', sort: 'longdiphthong' }
+
+];
+
+
+const RGTS = [//checked
+    { letter: 'ก', rgts: 'ko kai' },
+    { letter: 'ข', rgts: 'kho khai' },
+    { letter: 'ฃ', rgts: 'kho khuat' },
+    { letter: 'ค', rgts: 'kho khwai' },
+    { letter: 'ฅ', rgts: 'kho khon' },
+    { letter: 'ฆ', rgts: 'kho rakhang' },
+    { letter: 'ง', rgts: 'ngo ngu' },
+    { letter: 'จ', rgts: 'cho chan' },
+    { letter: 'ฉ', rgts: 'cho ching' },
+    { letter: 'ช', rgts: 'cho chang' },
+    { letter: 'ซ', rgts: 'so so' },
+    { letter: 'ฌ', rgts: 'cho choe' },
+    { letter: 'ญ', rgts: 'yo ying' },
+    { letter: 'ฎ', rgts: 'do chada' },
+    { letter: 'ฏ', rgts: 'to patak' },
+    { letter: 'ฐ', rgts: 'tho than' },
+    { letter: 'ฑ', rgts: 'tho montho' },
+    { letter: 'ฒ', rgts: 'tho phu thao' },
+    { letter: 'ณ', rgts: 'no nen' },
+    { letter: 'ด', rgts: 'do dek' },
+    { letter: 'ต', rgts: 'to tao' },
+    { letter: 'ถ', rgts: 'tho thung' },
+    { letter: 'ท', rgts: 'tho thahan' },
+    { letter: 'ธ', rgts: 'tho thong' },
+    { letter: 'น', rgts: 'no nu' },
+    { letter: 'บ', rgts: 'bo baimai' },
+    { letter: 'ป', rgts: 'po pla' },
+    { letter: 'ผ', rgts: 'pho phueng' },
+    { letter: 'ฝ', rgts: 'fo fa' },
+    { letter: 'พ', rgts: 'pho phan' },
+    { letter: 'ฟ', rgts: 'fo fan' },
+    { letter: 'ภ', rgts: 'pho samphao' },
+    { letter: 'ม', rgts: 'mo ma' },
+    { letter: 'ย', rgts: 'yo yak' },
+    { letter: 'ร', rgts: 'ro ruea' },
+    { letter: 'ล', rgts: 'lo ling' },
+    { letter: 'ว', rgts: 'wo waen' },
+    { letter: 'ศ', rgts: 'so sala' },
+    { letter: 'ษ', rgts: 'so ruesi' },
+    { letter: 'ส', rgts: 'so suea' },
+    { letter: 'ห', rgts: 'ho hip' },
+    { letter: 'ฬ', rgts: 'lo chula' },
+    { letter: 'อ', rgts: 'o ang' },
+    { letter: 'ฮ', rgts: 'ho nok huk' }
+];
+
+//verified and updated list with thai person and AI and sorted by sound. Only the first 20 are most used. after the sounds are rarely used
+const most_common_consonants = ['ก', 'ค', 'ม', 'น', 'ง', 'บ', 'ป', 'พ', 'ฟ', 'ด', 'ต', 'ท', 'ว', 'ย', 'ส', 'จ', 'ช', 'ร', 'ล', 'ห', 'อ', 'ถ','ข', 'ธ', 'ซ', 'ณ', 'ภ', 'ฝ','ญ', 'ฬ', 'ศ', 'ษ', 'ฎ', 'ฏ', 'ฐ', 'ฌ', 'ฮ','ฆ', 'ฑ', 'ฒ','ฉ', 'ผ','ฅ','ฃ'];
+
+
+const mode1Button = document.querySelector('#mode1');
+const mode2Button = document.querySelector('#mode2');
+
+var selectedSymbols = [];
+
+let isToggled = false; // state variable
+document.getElementById('sort-learning-elements').addEventListener('click', () => {
+    isToggled = !isToggled; // flip the state
+    if(isToggled) {
+        createLearningElements('consonants', 'sort');
+    } else {
+        createLearningElements('consonants');
+    }
+});
+
+function createLearningElements(elementSort = 'consonants', abc){//consonants, vowels or tones
+
+    selectedSymbols.splice(0, selectedSymbols.length); // Clear selectedSymbols array
+
+        document.querySelector("#choice").innerHTML = '';
+        document.querySelector("#test-result").innerHTML = '';
+        document.querySelector("#score").innerHTML = '';
+        document.querySelector('#info-area').innerHTML = ''; // clear previous info
+
+
+
+        const container = document.querySelector('#consonants-container');
+        container.innerHTML = '';
+        let symbolArray;
+  
+        if (elementSort === "consonants") {
+            document.getElementById('consonants-container').style.gridTemplateColumns = 'repeat(8, 1fr)';
+            document.getElementById('choice').style.gridTemplateColumns = 'repeat(8, 1fr)';
+            if(abc === 'sort'){
+                symbolArray = consonants.slice();
+                
+                // Generate an object that holds the order for sorting
+                const sortOrder = {};
+                most_common_consonants.forEach((letter, index) => {
+                sortOrder[letter] = index;
+                });
+
+                // Sort your consonants array
+                symbolArray.sort((a, b) => sortOrder[a.letter] - sortOrder[b.letter]);
+                //symbolArray = vowelsAll;
+            }else{
+                symbolArray = [];
+                symbolArray = consonants;
+            }
+            document.querySelector('#sort-learning-elements').style.display = 'inline';
+            document.querySelector('.sort-learning-elements').style.display = 'inline';
+
+        } else if (elementSort === "vowels") {
+            document.getElementById('consonants-container').style.gridTemplateColumns = 'repeat(4, 1fr)';
+            document.getElementById('choice').style.gridTemplateColumns = 'repeat(4, 1fr)';
+            symbolArray = vowelsAll;
+            document.querySelector('#sort-learning-elements').style.display = 'none';
+            document.querySelector('.sort-learning-elements').style.display = 'none';
+
+        } else if (elementSort === "tones") {
+            symbolArray = tones;
+        } else {
+            console.error('Invalid elementSort provided.');
+            return;
+        }
+
+        symbolArray.forEach(c => {
+            const tile = document.createElement('div');
+            if (elementSort === "consonants") {
+                tile.textContent = c.letter;
+            }
+            if (elementSort === "vowels") {
+                tile.textContent = c.vowel;
+            }
+            if (elementSort === "tones") {
+                tile.textContent = c.tone;
+            }
+
+            tile.className = 'tile';
+            tile.onclick = function() {
+                this.classList.toggle('selected');
+                if (selectedSymbols.includes(c)) {
+                selectedSymbols = selectedSymbols.filter(item => item !== c);
+                } else {
+                selectedSymbols.push(c);
+                }
+            };
+            container.appendChild(tile);
+        });
+
+    };
+
+mode1Button.onclick = function() {
+
+    document.querySelector("#choice").innerHTML = '';
+        document.querySelector("#test-result").innerHTML = '';
+        document.querySelector("#score").innerHTML = '';
+        document.querySelector('#info-area').innerHTML = ''; // clear previous info
+
+
+  if (selectedSymbols.length === 0) {
+    alert("Select letters first");
+    return;
+  }
+
+  document.querySelector('#test-area').style.display = 'block';
+  document.querySelector('#info-area').style.display = 'none';
+  
+  // Clear previous choices and result
+  document.querySelector('#choice').innerHTML = '';
+  document.querySelector('#test-result').textContent = '';
+  
+  // Generate tiles for each letter in the selected group
+  let score = 0;
+  let tries = 0; 
+
+  selectedSymbols.forEach(c => {
+    let firstSymbolKey = Object.keys(c)[0]; // get the name of the first key eg. letter: vowel: use c[firstSymbolKey] instead of c.letter
+
+    const tile = document.createElement('div');
+    tile.textContent = c[firstSymbolKey];
+    tile.className = 'tile';
+    tile.onclick = function() {
+
+        tries++;  // Increase the tries counter
+        if (c[firstSymbolKey] === testConsonant[firstSymbolKey]) {
+            document.querySelector('#test-result').textContent = "Correct!";
+            score++;
+        } else {
+            document.querySelector('#test-result').textContent = "Incorrect";
+        }
+        document.querySelector('#score').textContent = "Score: " + score + "/" + tries;
+    };
+    document.querySelector('#choice').appendChild(tile);
+  });
+  
+//   var testConsonant;
+//   document.querySelector('#playSound').onclick = function() {
+//     testConsonant = selectedSymbols[Math.floor(Math.random() * selectedSymbols.length)];
+//     new Audio(testConsonant.audio).play();
+//   };
+    var testConsonant;
+    var selectedIndexes = []; // Track the selected indexes
+
+    document.querySelector('#playSound').onclick = function() {
+    var index;
+    
+    // Generate a unique random index
+    do {
+        index = Math.floor(Math.random() * selectedSymbols.length);
+    } while (selectedIndexes.includes(index));
+
+    selectedIndexes.push(index); // Add the selected index to the array
+    
+    // If all elements have been played, reset the array
+    if (selectedIndexes.length === selectedSymbols.length) {
+        selectedIndexes = [];
+    }
+
+    testConsonant = selectedSymbols[index];
+    new Audio(testConsonant.audio).play();
+    };
+
+
+
+};
+
+
+mode2Button.onclick = function() {
+
+    
+
+    if (selectedSymbols.length === 0) {
+    alert("Select letters first");
+    return;
+  }
+
+
+        document.querySelector("#choice").innerHTML = '';
+        document.querySelector("#test-result").innerHTML = '';
+        document.querySelector("#score").innerHTML = '';
+
+
+  document.querySelector('#info-area').style.display = 'block';
+  document.querySelector('#test-area').style.display = 'none';
+  
+  document.querySelector('#info-area').innerHTML = ''; // clear previous info
+
+  selectedSymbols.forEach(c => {
+    let firstSymbolKey = Object.keys(c)[0];  // get the name of the first key eg. letter: vowel: use c[firstSymbolKey] instead of c.letter
+    let secondSymbolKey = Object.keys(c)[1];  // get the name of the first key eg. letter: vowel: use c[firstSymbolKey] instead of c.letter
+    
+    const tile = document.createElement('div');
+    tile.textContent = c[firstSymbolKey];
+    tile.className = 'tile';
+
+    tile.onclick = function() {
+      // Play the corresponding sound when the tile is clicked
+      new Audio(c.audio).play();
+
+      const info = document.createElement('p');
+      info.className = 'first-item-tile';
+      info.textContent = c[secondSymbolKey];
+      const info2 = document.createElement('p');
+      info2.className = 'second-item-tile';
+      
+      if (selectedSymbols.every(symbol => !('sort' in symbol))) {//check if not array vowels same as if(consonants)
+        const mode2RGTS = RGTS.find(item => item.letter === c[firstSymbolKey]).rgts;
+        info2.textContent = mode2RGTS;
+        tile.appendChild(info2);
+      }
+      tile.appendChild(info);
+      setTimeout(() => {
+        tile.removeChild(info);
+        tile.removeChild(info2);
+      }, 3000);
+
+    };
+    document.querySelector('#info-area').appendChild(tile);
+  });
+};
+
+createLearningElements();
+
+
+</script>
+</body>
+</html>

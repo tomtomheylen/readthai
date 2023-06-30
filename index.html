@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <title>Thai alphabet tool dot com</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+
+  </style>
+</head>
+
+<body>
+      <div id="page-controls">
+        <div class="menu-div">
+          <div class="menu-div-title">Home</div>
+          <div>
+            <button class="menu-button home"><b><span>&#127968;</span></b></button>
+          </div>
+        </div>
+        
+        
+        <div class="menu-div">
+          <div class="menu-div-title">Edit</div>
+          <div>
+            <!-- buttons for other pages-->
+            <button class="menu-button" ><b><span>!</span></b></button>
+            <button class="menu-button"><b><span>&#9998;</span></b></button>
+            <button class="menu-button"><b><span>?</span></b></button>
+          </div>
+        </div>
+        <div class="menu-div">
+          <div class="menu-div-title">Font</div>
+          <div>
+            <!-- font style buttons-->
+            <button onclick="changeFont('Sarabun')" class="font-button Sarabun" ><b>ก</b></button>
+            <button onclick="changeFont('IBM Plex Sans Thai')" class="font-button IBM"><b>ก</b></button>
+          </div>
+        </div>
+        <div class="menu-div">
+          <div class="menu-div-title">Most Used</div>
+          <div>
+            <!-- Counter -->
+            <button class="counter-button" onclick="decrement()">-</button>
+            <input id="counter-input" type="number" class="counter-input" min="1" max="44" value="10" readonly>
+            <button class="counter-button" onclick="increment()">+</button>
+          </div>
+        </div>
+        <div class="menu-div">
+          <div class="menu-div-title">Reset</div>
+          <div>
+            <!-- reset alphabet -->
+            <button onclick="createElements()" class="font-button"><b>🔄abc</b></button>
+          </div>
+        </div>
+        <div class="menu-div">
+          <div class="menu-div-title">Mode</div>
+          <div>
+            <!-- reset alphabet -->
+            <button onclick="toggleDarkMode()" class="font-button" id="dark-mode"><b id="dark-mode-text">Dark</b></button>
+
+          </div>
+        </div>
+        
+        
+      </div>
+
+      <div id="consonantContainer">
+      </div>
+      <center><h1><b>Vowels (Scroll left for more)</b></h1></center>
+      <div id="vowelContainer" >
+      </div>
+
+
+      <div id="tones">
+        <img src="https://www.thailanguagehut.com/wp-content/uploads/2018/06/Graph.jpg.webp" alt="Your Image" style="max-width: 100%; height: auto;">
+
+      </div>
+
+      <div id="popup" class="popup">
+        <!-- <span class="pop-close-btn" onclick="togglePopup()">X</span> -->
+        <div>
+            <div class="pop-consonant">
+                <div class="pop-inner-box1" >Symbol</div><div class="pop-inner-box2" id="pop1"></div>
+            </div>
+            <div class="pop-consonant">
+                <div class="pop-inner-box1" id="pop-write"></div><div class="pop-inner-box2" id="pop2"></div>
+            </div>
+        </div>
+        <div class="pop-pronounce">
+            <div class="pop-consonant">
+                <div class="pop-inner-box1">Thai</div><div class="pop-inner-box2" id="pop3"></div>
+            </div>
+
+            <div class="pop-consonant">
+                <div class="pop-inner-box1">RGTS</div><div class="pop-inner-box2" id="pop4"></div>
+            </div>
+
+            <div class="pop-consonant">
+              <div class="pop-inner-box1">Meaning</div><div class="pop-inner-box2" id="pop5"></div>
+            </div>
+
+            <div class="pop-consonant">
+                <div class="pop-inner-box1">Initial</div><div class="pop-inner-box2" id="pop6"></div>
+            </div>
+
+            <div class="pop-consonant">
+                <div class="pop-inner-box1">final</div><div class="pop-inner-box2" id="pop7"></div>
+            </div>
+            <div class="pop-consonant">
+                <div class="pop-inner-box1">Class</div><div class="pop-inner-box2" id="pop8"></div>
+            </div>
+        </div>   
+
+        <div id="pop-notes">
+        </div>
+        
+        <div id="pop-common-words">
+            <h1><b>Common words</b></h1>
+            <div id="pop9"></div>
+        </div>
+
+      </div>
+
+
+    </div>
+
+</body>
+
+  <!-- JavaScript -->
+  <script src="arrays.js"></script>
+
+  <script src="functions.js"></script>
+
+  <script>
+
+</script>
+
+
