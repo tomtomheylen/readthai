@@ -391,42 +391,44 @@ const shortDiphthongs = [
   { vowel: 'เ◌ ือะ', pronunciation: 'uea', audio: 'vowels/22.mp3' },
   { vowel: '◌ัวะ', pronunciation: 'ua', audio: 'vowels/63.mp3' },
   { vowel: '◌ำ', pronunciation: 'am', audio: 'vowels/48.mp3' },
-  { vowel: 'เ◌า', pronunciation: 'ao', audio: 'vowels/45.mp3' },
+  { vowel: 'เ◌า', pronunciation: 'ao', audio: 'vowels/39.mp3' },
   { vowel: 'ไ◌', pronunciation: 'ai', audio: 'vowels/26.mp3' },
   { vowel: 'ใ◌', pronunciation: 'ai', audio: 'vowels/27.mp3' }
 ];
 
+
+var prefixVowels = 'https://storage.googleapis.com/funtolearnthai/audio/';
 const vowelsAll = [
-  { vowel: '◌ะ', pronunciation: 'a', audio: 'vowels/1.mp3', sort: 'short' },
-  { vowel: '◌า', pronunciation: 'aa', audio: 'vowels/2.mp3', sort: 'long' },
-  { vowel: '◌ิ', pronunciation: 'i', audio: 'vowels/14.mp3', sort: 'short' },
-  { vowel: '◌ี', pronunciation: 'ii', audio: 'vowels/15.mp3', sort: 'long' },
-  { vowel: '◌ึ', pronunciation: 'ue', audio: 'vowels/16.mp3', sort: 'short' },
-  { vowel: '◌ื', pronunciation: 'euu', audio: 'vowels/17.mp3', sort: 'long' },
-  { vowel: '◌ุ', pronunciation: 'u', audio: 'vowels/18.mp3', sort: 'short' },
-  { vowel: '◌ู', pronunciation: 'uu', audio: 'vowels/19.mp3', sort: 'long' },
-  { vowel: 'เ◌ะ', pronunciation: 'e', audio: 'vowels/8.mp3', sort: 'short' },
-  { vowel: 'เ◌', pronunciation: 'ee', audio: 'vowels/9.mp3', sort: 'long' },
-  { vowel: 'แ◌ะ', pronunciation: 'ae', audio: 'vowels/3.mp3', sort: 'short' },
-  { vowel: 'แ◌', pronunciation: 'aae', audio: 'vowels/4.mp3', sort: 'long' },
-  { vowel: 'โ◌ะ', pronunciation: 'o', audio: 'vowels/12.mp3', sort: 'short' },
-  { vowel: 'โ◌', pronunciation: 'ooh', audio: 'vowels/13.mp3', sort: 'long' },
-  { vowel: 'เ◌าะ', pronunciation: 'aw', audio: 'vowels/5.mp3', sort: 'short' },
-  { vowel: '◌อ', pronunciation: 'aaw', audio: 'vowels/7.mp3', sort: 'long' },
-  { vowel: 'เ◌อะ', pronunciation: 'uh', audio: 'vowels/10.mp3', sort: 'short' },
-  { vowel: 'เ◌อ', pronunciation: 'euh', audio: 'vowels/11.mp3', sort: 'long' },
+  { vowel: '◌ะ', pronunciation: 'a',  audio: prefixVowels + 'vowels/1.mp3', sort: 'short' },
+  { vowel: '◌า', pronunciation: 'aa',  audio: prefixVowels + 'vowels/2.mp3', sort: 'long' },
+  { vowel: '◌ิ', pronunciation: 'i',  audio: prefixVowels + 'vowels/14.mp3', sort: 'short' },
+  { vowel: '◌ี', pronunciation: 'ii',  audio: prefixVowels + 'vowels/15.mp3', sort: 'long' },
+  { vowel: '◌ึ', pronunciation: 'ue',  audio: prefixVowels + 'vowels/16.mp3', sort: 'short' },
+  { vowel: '◌ื', pronunciation: 'euu',  audio: prefixVowels + 'vowels/17.mp3', sort: 'long' },
+  { vowel: '◌ุ', pronunciation: 'u',  audio: prefixVowels + 'vowels/18.mp3', sort: 'short' },
+  { vowel: '◌ู', pronunciation: 'uu',  audio: prefixVowels + 'vowels/19.mp3', sort: 'long' },
+  { vowel: 'เ◌ะ', pronunciation: 'e',  audio: prefixVowels + 'vowels/8.mp3', sort: 'short' },
+  { vowel: 'เ◌', pronunciation: 'ee',  audio: prefixVowels + 'vowels/9.mp3', sort: 'long' },
+  { vowel: 'แ◌ะ', pronunciation: 'ae',  audio: prefixVowels + 'vowels/3.mp3', sort: 'short' },
+  { vowel: 'แ◌', pronunciation: 'aae',  audio: prefixVowels + 'vowels/4.mp3', sort: 'long' },
+  { vowel: 'โ◌ะ', pronunciation: 'o',  audio: prefixVowels + 'vowels/12.mp3', sort: 'short' },
+  { vowel: 'โ◌', pronunciation: 'ooh',  audio: prefixVowels + 'vowels/13.mp3', sort: 'long' },
+  { vowel: 'เ◌าะ', pronunciation: 'aw',  audio: prefixVowels + 'vowels/5.mp3', sort: 'short' },
+  { vowel: '◌อ', pronunciation: 'aaw',  audio: prefixVowels + 'vowels/7.mp3', sort: 'long' },
+  { vowel: 'เ◌อะ', pronunciation: 'uh',  audio: prefixVowels + 'vowels/10.mp3', sort: 'short' },
+  { vowel: 'เ◌อ', pronunciation: 'euh',  audio: prefixVowels + 'vowels/11.mp3', sort: 'long' },
   // Short diphthongs
-  { vowel: 'เ◌ ียะ', pronunciation: 'ia', audio: 'vowels/20.mp3', sort: 'shortdiphthong' },
-  { vowel: 'เ◌ ือะ', pronunciation: 'uea', audio: 'vowels/22.mp3', sort: 'shortdiphthong' },
-  { vowel: '◌ัวะ', pronunciation: 'ua', audio: 'vowels/63.mp3', sort: 'shortdiphthong' },
-  { vowel: '◌ำ', pronunciation: 'am', audio: 'vowels/48.mp3', sort: 'shortdiphthong' },
-  { vowel: 'เ◌า', pronunciation: 'ao', audio: 'vowels/45.mp3', sort: 'shortdiphthong' },
-  { vowel: 'ไ◌', pronunciation: 'ai', audio: 'vowels/26.mp3', sort: 'shortdiphthong' },
-  { vowel: 'ใ◌', pronunciation: 'ai', audio: 'vowels/27.mp3', sort: 'shortdiphthong' },
+  { vowel: 'เ◌ ียะ', pronunciation: 'ia',  audio: prefixVowels + 'vowels/20.mp3', sort: 'shortdiphthong' },
+  { vowel: 'เ◌ ือะ', pronunciation: 'uea',  audio: prefixVowels + 'vowels/22.mp3', sort: 'shortdiphthong' },
+  { vowel: '◌ัวะ', pronunciation: 'ua',  audio: prefixVowels + 'vowels/63.mp3', sort: 'shortdiphthong' },
+  { vowel: '◌ำ', pronunciation: 'am',  audio: prefixVowels + 'vowels/48.mp3', sort: 'shortdiphthong' },
+  { vowel: 'เ◌า', pronunciation: 'ao',  audio: prefixVowels + 'vowels/39.mp3', sort: 'shortdiphthong' },
+  { vowel: 'ไ◌', pronunciation: 'ai',  audio: prefixVowels + 'vowels/26.mp3', sort: 'shortdiphthong' },
+  { vowel: 'ใ◌', pronunciation: 'ai',  audio: prefixVowels + 'vowels/27.mp3', sort: 'shortdiphthong' },
 
   // Long diphthongs
-  { vowel: 'เ◌ ีย', pronunciation: 'iia', audio: 'vowels/21.mp3', sort: 'longdiphthong' },
-  { vowel: 'เ◌ ือ', pronunciation: 'uuea', audio: 'vowels/23.mp3', sort: 'longdiphthong' },
-  { vowel: '◌ัว', pronunciation: 'uua', audio: 'vowels/25.mp3', sort: 'longdiphthong' }
+  { vowel: 'เ◌ ีย', pronunciation: 'iia',  audio: prefixVowels + 'vowels/21.mp3', sort: 'longdiphthong' },
+  { vowel: 'เ◌ ือ', pronunciation: 'uuea',  audio: prefixVowels + 'vowels/23.mp3', sort: 'longdiphthong' },
+  { vowel: '◌ัว', pronunciation: 'uua',  audio: prefixVowels + 'vowels/25.mp3', sort: 'longdiphthong' }
 
 ];

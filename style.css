@@ -38,6 +38,75 @@
       font-weight: bold;
       font-size: 12px;
     }
+    #toggle-pages{
+        float: right;
+        width: 150px;
+    }
+    .font-button {
+        font-family: sans-serif;
+        font-size: 15px;
+        padding: 4px 8px;
+        margin: 1px;
+        border: none;
+        border-radius: 2px;
+        cursor: pointer;
+        background-color: var(--bg-inner2);
+        color: var(--inner2-text);
+      }
+
+    .menu-button {
+        font-family: sans-serif;
+        font-size: 15px;
+        padding: 4px 8px;
+        margin: 1px;
+        border: none;
+        border-radius: 2px;
+        cursor: pointer;
+        background-color: var(--bg-inner1);
+        color: var(--inner1-text);
+
+      }
+      #page-controls{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-body);
+        color: var(--body-text);
+        padding: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        z-index: 9999;
+      }
+
+      .counter-button {
+        width: 25px;
+        font-family: sans-serif;
+        font-size: 15px;
+        padding: 4px 8px;
+        margin: 1px;
+        border: none;
+        border-radius: 2px;
+        cursor: pointer;
+        background-color: var(--bg-inner1);
+        color: var(--inner1-text);
+        font-weight: bold;
+      }
+  
+      .counter-input {
+        width: 55px;
+        font-family: sans-serif;
+        font-size: 15px;
+        padding: 4px 8px;
+        margin: 1px;
+        border: none;
+        border-radius: 2px;
+        cursor: pointer;
+        background-color: var(--bg-inner1);
+        color: var(--inner1-text);
+        font-weight: bold;
+        text-align: center;
+      }
+
     .consonant {
         display: inline-block;
         width: 70px;
@@ -59,7 +128,12 @@
         background-color: var(--bg-inner1);
         color: var(--inner1-text);
         /* font-family: 'Sarabun', sans-serif; */
-      }
+        background-image: url(images/loud-speaker.png);
+        background-size: 8px 8px;
+        background-repeat: no-repeat;
+        background-position: right 5px top 5px;
+        cursor: pointer;
+    }
   
       .inner-box2 {
         width: 70px;
@@ -68,6 +142,12 @@
         color: var(--inner2-text);
         font-size: 15px;
         font-family: 'Trirong', sans-serif;
+        background-image: url(images/more.png);
+        background-size: 15px 15px;
+        background-repeat: no-repeat;
+        background-position: right 0px top 2px;
+        cursor: pointer;
+
       }
 
       /* vowels */
@@ -114,6 +194,11 @@
         background-color: var(--bg-inner1);
         color: var(--inner1-text);
         /* font-family: 'Sarabun', sans-serif; */
+        background-image: url(images/loud-speaker.png);
+        background-size: 8px 8px;
+        background-repeat: no-repeat;
+        background-position: right 5px top 5px;
+        cursor: pointer;
       }
   
       .vowel-inner-box2 {
@@ -221,28 +306,6 @@
           height: 120px;
         }
       }
-      #page-controls{
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background-color: var(--bg-body);
-        color: var(--body-text);
-        padding: 4px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        z-index: 9999;
-      }
-      .font-button {
-        font-family: sans-serif;
-        font-size: 15px;
-        padding: 4px 8px;
-        margin: 1px;
-        border: none;
-        border-radius: 2px;
-        cursor: pointer;
-        background-color: var(--bg-inner2);
-        color: var(--inner2-text);
-      }
       .Sarabun{
         font-family: 'Sarabun', sans-serif;
       }
@@ -255,51 +318,89 @@
       .IBM{
         font-family: 'IBM Plex Sans Thai', sans-serif;
       }
-      .menu-button {
-        font-family: sans-serif;
-        font-size: 15px;
-        padding: 4px 8px;
-        margin: 1px;
-        border: none;
-        border-radius: 2px;
-        cursor: pointer;
-        background-color: var(--bg-inner1);
-        color: var(--inner1-text);
-      }
-      .home{
-        background-color: var(--bg-inner1);
-        color: var(--inner1-text);
 
+      #consonants-container {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        gap: 5px;
       }
   
-      .counter-button {
-        width: 25px;
-        font-family: sans-serif;
-        font-size: 15px;
-        padding: 4px 8px;
-        margin: 1px;
-        border: none;
-        border-radius: 2px;
-        cursor: pointer;
-        background-color: var(--bg-inner1);
-        color: var(--inner1-text);
-        font-weight: bold;
+      .button-container {
+      display: flex;
       }
   
-      .counter-input {
-        width: 55px;
-        font-family: sans-serif;
-        font-size: 15px;
-        padding: 4px 8px;
-        margin: 1px;
-        border: none;
-        border-radius: 2px;
-        cursor: pointer;
-        background-color: var(--bg-inner1);
-        color: var(--inner1-text);
-        font-weight: bold;
+      .half-page-button {
+          flex: 1;
+          margin: 10px;
+          font-size: 30px;
+          background-color: var(--bg-inner1);
+          cursor: pointer;
+      }
+      #choice {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        gap: 5px;
+        
+      }
+      #info-area {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        gap: 5px;
+        padding-bottom: 200px;
+      }
+  
+      .tile {
+        border: 1px solid black;
+        padding: 1px;
         text-align: center;
+        cursor: pointer;
+        font-size: 35px;
+        background-color: var(--bg-inner2);
+      }
+      .tile.selected {
+        background-color: lightgray;
+      }
+      .first-item-tile{
+          font-size: 20px;
+  
+      }
+      .second-item-tile{
+          font-size: 20px;
+          font-weight: bold;
+  
+      }
+      #playSound{
+          font-size: 40px;
+          border-radius: 10px;
+          background-color: var(--bg-inner2);
+          padding: 5px;
+          padding-right: 10px;
+          margin: 5px;
+          margin-bottom: 10px;
       }
   
+      #test-area{
+          margin-bottom: 60px;
+      }
+      #showConsonants, #showVowels{
+          flex: 1;
+          margin: 10px;
+          font-size: 30px;
+          background-color: var(--bg-inner2);
+          cursor: pointer;
+          padding-left: 20px;
+          padding-right: 20px;
+      }
+      #sort-learning-elements{
+          border-radius: 10px;
+          background-color: var(--bg-inner1);
+          padding: 5px;
+          padding-right: 10px;
+          margin: 5px;
+          margin-bottom: 10px;
   
+      }
+      #page-two{
+          padding-top: 65px;
+      }
   
