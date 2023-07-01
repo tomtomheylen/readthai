@@ -6,6 +6,7 @@
       --inner2-text: black;
       --bg-body: white;
       --body-text: #000000;
+      --box-shadow-color: lightgray;
     }
 
     /* Dark Mode */
@@ -16,6 +17,7 @@
       --inner2-text: #e3e3e3;
       --bg-body: #222222;
       --body-text: #ffffff;
+      --box-shadow-color: #135f63;
     }
 
     body{
@@ -74,7 +76,7 @@
         background-color: var(--bg-body);
         color: var(--body-text);
         padding: 4px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 4px var(--box-shadow-color);
         z-index: 9999;
       }
 
