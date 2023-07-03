@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <title>Learn Thai Alphabet Online | ReadThai.fun</title>
+  <meta name="description" content="ReadThai.fun is a free online tool that helps you learn the Thai alphabet with interactive lessons and quizzes. Start your Thai language journey today!">
+  <meta property="og:title" content="Learn Thai Alphabet Online | ReadThai.fun" />
+  <meta property="og:description" content="ReadThai.fun is a free online tool that helps you learn the Thai alphabet with interactive lessons and quizzes. Start your Thai language journey today!" />
+  <meta property="og:url" content="https://readthai.fun/" />
+  <!-- <meta property="og:image" content="URL_TO_YOUR_IMAGE" />  -->
+
+  <meta name="keywords" content="Learn Thai, Thai Alphabet, Thai Language, Online Thai Lessons">
+  <link rel="stylesheet" href="style.css">
+
+
+
+</head>
+
+<body>
+    <div id="page-controls">
+        
+        <div class="menu-div">
+          <div class="menu-div-title">Font</div>
+          <div>
+            <!-- font style button-->
+            <button onclick="toggleFont()" class="menu-button" id="font-toggle-button"><b>Classic</b></button>
+          </div>
+        </div>
+        <div class="menu-div">
+          <div class="menu-div-title">Mode</div>
+          <div>
+            <!-- reset alphabet -->
+            <button onclick="toggleDarkMode()" class="menu-button" id="dark-mode-button"><b>Light</b></button>          </div>
+        </div>
+        <div style="float: right;">
+          <div class="menu-div-title" id="toggle-pages-title">Reference when reading Thai</div>
+          <button class="menu-button" id="toggle-pages" onclick="togglePages()"><b><span>Study <<</span></b></button>
+        </div>
+                      
+        
+    </div>   <!--end page controls -->
+
+
+
+    <div id="page-one">
+      <div class="menu-div-title" style="text-align: left;">Tap + / - to sort by most used consonants first</div>
+      <div class="menu-div">
+        <div>
+          <!-- Counter -->
+          <button class="counter-button" onclick="decrement()">-</button>
+          <input style="display: none;" id="counter-input" type="number" class="counter-input" min="1" max="44" value="10" readonly>
+          <button class="counter-button" onclick="increment()">+</button>
+        </div>
+      </div>
+      <div class="menu-div">
+        <div>
+          <!-- reset alphabet -->
+          <button onclick="createElements()" class="font-button reset" ><b>🔄Reset</b></button>
+        </div>
+      </div>
+
+      <div id="consonantContainer">
+      </div>
+      <center><h1><b>Vowels (Scroll left for more)</b></h1></center>
+      <div id="vowelContainer" >
+      </div>
+
+    </div><!-- end page-one -->
+
+    <div id="page-two">
+
+        <h1><b>1) Click Consonants or Vowels </b></h1> 
+        <h1><b>2) Click the symbols you want to learn</b></h1>
+        <h1><b>3) Click Learn or Test button</b></h1> 
+    
+        <div class="button-container">
+            <button onclick="createLearningElements('consonants')" id="showConsonants">Consonants</button>
+            <button onclick="createLearningElements('vowels')" id="showVowels">Vowels</button>
+        </div>
+        <button id="sort-learning-elements"><b>🔄abc</b></button>  <b class="sort-learning-elements">Toggle MOST COMMON / ALPHABETIC</b>
+      
+      <div id="consonants-container">
+        <!-- consonants will be dynamically inserted here -->
+      </div>
+    
+      <div class="button-container">
+        <button id="mode2" class="half-page-button">Learn</button>
+        <button id="mode1" class="half-page-button">Test</button>
+      </div>
+    
+      <div id="test-area" style="display:none;">
+        <h1><b>1) Click the sound button. </b></h1> 
+        <h1><b>2) Click the corresponding symbol</b></h1>
+        <h1><b>3) Repeat for next sound.</b></h1> 
+        <h1><b>Click test button again to reset score</b></h1>
+            <div >
+                <button id="playSound" style="display: inline;">&#128266; </button>
+                <p style="display: inline; font-size: 30px; font-weight: bold;" id="test-result"></p>
+                <p style="display: inline; font-size: 30px;" id="score"></p>
+            </div>
+            
+        
+            <span id="choice"></span>
+      </div>
+    
+      <div id="info-area" style="display:none;">
+        <!-- selected consonant info will be dynamically inserted here -->
+      </div>
+    
+
+    </div><!-- end page-two -->
+
+
+    <div id="popup" class="popup">
+      <span class="pop-close-btn" onclick="togglePopup()">X</span>
+      <div>
+          <div class="pop-consonant">
+              <div class="pop-inner-box1" >Symbol</div><div class="pop-inner-box2" id="pop1"></div>
+          </div>
+          <div class="pop-consonant">
+              <div class="pop-inner-box1" id="pop-write"></div><div class="pop-inner-box2" id="pop2"></div>
+          </div>
+      </div>
+      <div class="pop-pronounce">
+          <div class="pop-consonant">
+              <div class="pop-inner-box1">Thai</div><div class="pop-inner-box2" id="pop3"></div>
+          </div>
+
+          <div class="pop-consonant">
+              <div class="pop-inner-box1">RGTS</div><div class="pop-inner-box2" id="pop4"></div>
+          </div>
+
+          <div class="pop-consonant">
+            <div class="pop-inner-box1">Meaning</div><div class="pop-inner-box2" id="pop5"></div>
+          </div>
+
+          <div class="pop-consonant">
+              <div class="pop-inner-box1">Initial</div><div class="pop-inner-box2" id="pop6"></div>
+          </div>
+
+          <div class="pop-consonant">
+              <div class="pop-inner-box1">final</div><div class="pop-inner-box2" id="pop7"></div>
+          </div>
+          <div class="pop-consonant">
+              <div class="pop-inner-box1">Class</div><div class="pop-inner-box2" id="pop8"></div>
+          </div>
+      </div>   
+
+      <div id="pop-notes">
+      </div>
+      
+      <div id="pop-common-words">
+          <h1><b>Common words</b></h1>
+          <div id="pop9"></div>
+      </div>
+
+    </div> <!--end popup-->
+
+</body>
+
+
+
+
+
+<script src="arrays.js"></script>
+<script src="page1.js"></script>
+<script src="page2.js"></script>
+<script src="menu.js"></script>
+<script src="dom.js"></script>
+<script src="functionCalls.js"></script>
+
+</html>
