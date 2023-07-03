@@ -1,4 +1,5 @@
-var prefix = "https://thaiarc.tu.ac.th/thai/";
+// var prefix = "https://thaiarc.tu.ac.th/thai/";
+var prefix = "";
   //updated innerbox sounds
     const consonants = [
   { letter: 'ก', innerBox: 'g like in go', audio: prefix + 'csounds/k_kai.wav' },
@@ -348,8 +349,8 @@ const RGTS = [//checked
     { letter: 'ฮ', class: 'low' }
   ];
   
-const prefixVowelsAudio = 'https://storage.googleapis.com/funtolearnthai/audio/';
-
+// const prefixVowelsAudio = 'https://storage.googleapis.com/funtolearnthai/audio/';
+const prefixVowelsAudio = '';
 
 // Short vowels
 
@@ -397,7 +398,9 @@ const shortDiphthongs = [
 ];
 
 
-var prefixVowels = 'https://storage.googleapis.com/funtolearnthai/audio/';
+// var prefixVowels = 'https://storage.googleapis.com/funtolearnthai/audio/';
+var prefixVowels = '';
+
 const vowelsAll = [
   { vowel: '◌ะ', pronunciation: 'a',  audio: prefixVowels + 'vowels/1.mp3', sort: 'short' },
   { vowel: '◌า', pronunciation: 'aa',  audio: prefixVowels + 'vowels/2.mp3', sort: 'long' },

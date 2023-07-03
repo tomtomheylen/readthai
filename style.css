@@ -267,16 +267,21 @@
         min-height: 65px;
         align-items: center;
         justify-content: center;
-
       }
       #pop1{
           width: 100px;
           height: 100px;
           background-color: var(--bg-inner1);
           color: var(--inner1-text);
-            font-size: 60px;
-            background-color: var(--bg-inner2);
-            color: var(--inner2-text);
+          font-size: 60px;
+          background-color: var(--bg-inner2);
+          color: var(--inner2-text);
+          background-image: url(images/loud-speaker.png);
+          background-size: 8px 8px;
+          background-repeat: no-repeat;
+          background-position: right 5px top 5px;
+          cursor: pointer;
+      
     
       }
       .pop-pronounce{

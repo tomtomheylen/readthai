@@ -7,8 +7,8 @@ function togglePopup(element) {
     const clonedElement = sound_div.cloneNode(false);//clone sound div to remove eventlisteners
     sound_div.parentNode.replaceChild(clonedElement, sound_div);//clone sound div to remove eventlisteners
   
-  //   const consonant = consonants_explanation.find(item => item.letter === element.id);
-  //   const audio = consonants.find(item => item.letter === element.id);
+    const consonant = consonants.find(item => item.letter === element.id);
+    const imgWrite = consonantImages.find(item => item.letter === element.id);
   
   
     document.getElementById('pop1').textContent = consonants.find(item => item.letter === element.id).letter;
@@ -16,12 +16,13 @@ function togglePopup(element) {
   
   
   
-  //   const imgContainer = document.getElementById('pop2');
+    const imgContainer = document.getElementById('pop2');
    
   
-  //   const img = consonantImages.find(item => item.letter === element.id).img; 
-  //   imgContainer.innerHTML = consonant.img ? `<img src="${prefix_img}${img}">` : '';
-  //   document.getElementById('pop-write').textContent = img ? 'Write' : '';
+    const img = consonantImages.find(item => item.letter === element.id).img; 
+    imgContainer.innerHTML = '<img src=imgWrite/'+consonant.letter+'.png>';
+    document.getElementById('pop-write').textContent = 'Write';
+
     const meaning = thaiMeaning.find(item => item.letter === element.id);
     const beginEnd = beginEndSound.find(item => item.letter === element.id);
     document.getElementById('pop3').innerHTML = '<b>'+meaning.letter +'<br>'+meaning.thai+'</b>';
