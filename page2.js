@@ -1,5 +1,7 @@
 const mode1Button = document.querySelector('#mode1');
 const mode2Button = document.querySelector('#mode2');
+const mode3Button = document.querySelector('#mode3');
+
 
 var selectedSymbols = [];
 
@@ -49,6 +51,7 @@ function createLearningElements(elementSort = 'consonants', abc){//consonants, v
             }
             document.querySelector('#sort-learning-elements').style.display = 'inline';
             document.querySelector('.sort-learning-elements').style.display = 'inline';
+            document.querySelector('#mode3').style.display = 'inline';
 
         } else if (elementSort === "vowels") {
             document.getElementById('consonants-container').style.gridTemplateColumns = 'repeat(4, 1fr)';
@@ -56,6 +59,7 @@ function createLearningElements(elementSort = 'consonants', abc){//consonants, v
             symbolArray = vowelsAll;
             document.querySelector('#sort-learning-elements').style.display = 'none';
             document.querySelector('.sort-learning-elements').style.display = 'none';
+            document.querySelector('#mode3').style.display = 'none';
 
         } else if (elementSort === "tones") {
             symbolArray = tones;
@@ -104,6 +108,7 @@ mode1Button.onclick = function() {
   }
 
   document.querySelector('#test-area').style.display = 'block';
+  document.querySelector('#instructions').style.display = 'block';
   document.querySelector('#info-area').style.display = 'none';
   
   // Clear previous choices and result
@@ -231,3 +236,54 @@ function scrollToBottom() {
 }
 
 
+mode3Button.onclick = function() {
+
+    document.querySelector("#choice").innerHTML = '';
+        document.querySelector("#test-result").innerHTML = '';
+        document.querySelector("#score").innerHTML = '';
+        document.querySelector('#info-area').innerHTML = ''; // clear previous info
+
+
+  if (selectedSymbols.length === 0) {
+    alert("Select letters first");
+    return;
+  }
+
+  document.querySelector('#test-area').style.display = 'block';
+  document.querySelector('#info-area').style.display = 'none';
+  document.querySelector('#instructions').style.display = 'none';
+  
+  // Clear previous choices and result
+  document.querySelector('#choice').innerHTML = '';
+  document.querySelector('#test-result').textContent = '';
+  
+  // Generate tiles for each letter in the selected group
+
+  selectedSymbols.forEach(c => {
+    let firstSymbolKey = Object.keys(c)[0]; 
+
+    const tile = document.createElement('div');
+    tile.className = 'tile';
+    tile.style.backgroundImage = "url('https://readthai.fun/imgWrite/" + c[firstSymbolKey] + ".png')";
+    tile.style.backgroundSize = "cover";
+    tile.style.backgroundPosition = "center";
+    
+
+    // specify width and height
+    tile.style.width = "50px";  // replace with desired width
+    tile.style.height = "50px"; // replace with desired height
+
+    tile.onclick = function() {
+        var img = document.getElementById('imageDraw');
+        img.onload = function() {
+            openPopupDraw();//draw.js
+        }
+        img.src = 'https://readthai.fun/imgWrite/' + c[firstSymbolKey] + '.png'; 
+    };
+    
+    document.querySelector('#choice').appendChild(tile);
+});
+
+    applySelectedFont();
+    scrollToBottom();
+};

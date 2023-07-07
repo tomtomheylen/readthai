@@ -14,7 +14,29 @@
 
   <meta name="keywords" content="Learn Thai, Thai Alphabet, Thai Language, Online Thai Lessons">
   <link rel="stylesheet" href="style.css">
+<style>
+      #canvasDraw {
+        border: 1px solid black;
+        cursor: crosshair;
+      }
 
+      #popupDraw {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        z-index: 9999;
+        display: none;
+      }
+
+      #close-buttonDraw {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+      }
+</style>
 
 
 </head>
@@ -39,7 +61,7 @@
           <div class="menu-div-title" id="toggle-pages-title">Reference when reading Thai</div>
           <button class="menu-button" id="toggle-pages" onclick="togglePages()"><b><span>Study <<</span></b></button>
         </div>
-                      
+               
         
     </div>   <!--end page controls -->
 
@@ -89,19 +111,23 @@
       <div class="button-container">
         <button id="mode2" class="half-page-button">Learn</button>
         <button id="mode1" class="half-page-button">Test</button>
+        <button id="mode3" class="half-page-button">Write</button>
       </div>
     
       <div id="test-area" style="display:none;">
-        <h1><b>1) Click the sound button. </b></h1> 
-        <h1><b>2) Click the corresponding symbol</b></h1>
-        <h1><b>3) Repeat for next sound.</b></h1> 
-        <h1><b>Click test button again to reset score</b></h1>
-            <div >
-                <button id="playSound" style="display: inline;">&#128266; </button>
-                <p style="display: inline; font-size: 30px; font-weight: bold;" id="test-result"></p>
-                <p style="display: inline; font-size: 30px;" id="score"></p>
-            </div>
-            
+        <div id="instructions">
+
+        
+          <h1><b>1) Click the sound button. </b></h1> 
+          <h1><b>2) Click the corresponding symbol</b></h1>
+          <h1><b>3) Repeat for next sound.</b></h1> 
+          <h1><b>Click test button again to reset score</b></h1>
+              <div >
+                  <button id="playSound" style="display: inline;">&#128266; </button>
+                  <p style="display: inline; font-size: 30px; font-weight: bold;" id="test-result"></p>
+                  <p style="display: inline; font-size: 30px;" id="score"></p>
+              </div>
+          </div>    
         
             <span id="choice"></span>
       </div>
@@ -159,6 +185,18 @@
 
     </div> <!--end popup-->
 
+    <!-- under dev-->
+    <div id="popupDraw">
+      <canvas id="canvasDraw"></canvas>
+      <img id="imageDraw" src="https://readthai.fun/imgWrite/%E0%B8%AA.png" style="display: none;" />
+      <button onclick="clearCanvas()">Clear</button>
+      <div id="close-buttonDraw" onclick="closePopupDraw()">Close</div>
+    </div><!-- end popupDraw-->
+
+
+
+
+
 </body>
 
 
@@ -171,5 +209,6 @@
 <script src="menu.js"></script>
 <script src="dom.js"></script>
 <script src="functionCalls.js"></script>
+<script src="draw.js"></script>
 
 </html>
