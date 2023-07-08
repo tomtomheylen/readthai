@@ -1,0 +1,416 @@
+@import 'https://fonts.googleapis.com/css?family=Sarabun|Itim|Sriracha|IBM Plex Sans Thai';
+    :root {
+      --bg-inner1: lightgray;
+      --inner1-text: black;
+      --bg-inner2: aqua;
+      --inner2-text: black;
+      --bg-body: white;
+      --body-text: #000000;
+      --box-shadow-color: lightgray;
+    }
+
+    /* Dark Mode */
+    .dark-mode {
+      --bg-inner1: #303030;
+      --inner1-text: #f5f5f5;
+      --bg-inner2: #135f63;
+      --inner2-text: #e3e3e3;
+      --bg-body: #222222;
+      --body-text: #ffffff;
+      --box-shadow-color: #135f63;
+    }
+
+    body{
+      background-color: var(--bg-body);
+      color: var(--body-text);
+    }
+    main{
+        min-height: calc(100vh - 320px);
+      }
+    .menu-div{
+      display: inline-block;
+      text-align: center;
+      /* border-radius: 2px;
+      border: 1px solid lightgray; */
+      
+
+    }
+    .menu-div-title{
+      text-align: center;
+      font-weight: bold;
+      font-size: 12px;
+    }
+    #toggle-pages{
+        float: right;
+        width: 150px;
+    }
+    .font-button {
+        font-family: sans-serif;
+        font-size: 15px;
+        padding: 4px 8px;
+        margin: 1px;
+        border: none;
+        border-radius: 2px;
+        cursor: pointer;
+        background-color: var(--bg-inner2);
+        color: var(--inner2-text);
+      }
+
+    .menu-button {
+        font-family: sans-serif;
+        font-size: 15px;
+        padding: 4px 8px;
+        margin: 1px;
+        border: none;
+        border-radius: 2px;
+        cursor: pointer;
+        background-color: var(--bg-inner1);
+        color: var(--inner1-text);
+
+      }
+      #page-controls{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-body);
+        color: var(--body-text);
+        padding: 4px;
+        box-shadow: 0 2px 4px var(--box-shadow-color);
+        z-index: 9000;
+      }
+
+      .counter-button {
+        width: 25px;
+        font-family: sans-serif;
+        font-size: 15px;
+        padding: 4px 8px;
+        margin: 1px;
+        border: none;
+        border-radius: 2px;
+        cursor: pointer;
+        background-color: var(--bg-inner1);
+        color: var(--inner1-text);
+        font-weight: bold;
+      }
+  
+      .counter-input {
+        width: 55px;
+        font-family: sans-serif;
+        font-size: 15px;
+        padding: 4px 8px;
+        margin: 1px;
+        border: none;
+        border-radius: 2px;
+        cursor: pointer;
+        background-color: var(--bg-inner1);
+        color: var(--inner1-text);
+        font-weight: bold;
+        text-align: center;
+      }
+
+    .consonant {
+        display: inline-block;
+        width: 70px;
+        height: 130px;
+        margin-left: 5px; /* Adjust margin as desired */
+        text-align: center;
+        margin-bottom: 5px;
+        vertical-align: top;
+        
+      }
+      .inner-box1 {
+        width: 70px;
+        height: 65px;
+        font-size: 40px;
+        align-items: center;
+        justify-content: center;
+        display: inline-flex;
+        flex-direction: column;
+        background-color: var(--bg-inner1);
+        color: var(--inner1-text);
+        /* font-family: 'Sarabun', sans-serif; */
+        background-image: url(images/loud-speaker.png);
+        background-size: 8px 8px;
+        background-repeat: no-repeat;
+        background-position: right 5px top 5px;
+        cursor: pointer;
+    }
+  
+      .inner-box2 {
+        width: 70px;
+        height: 65px;
+        background-color: var(--bg-inner2);
+        color: var(--inner2-text);
+        font-size: 15px;
+        font-family: 'Trirong', sans-serif;
+        background-image: url(images/more.png);
+        background-size: 15px 18px;
+        background-repeat: no-repeat;
+        background-position: right 0px top 2px;
+        cursor: pointer;
+
+      }
+
+      /* vowels */
+
+      #vowelContainer {
+        overflow-x: scroll;
+        white-space: nowrap;
+        /* font-size: 0; */ 
+        overflow-y: hidden;
+        scrollbar-width: none; /* Hide scrollbar in Firefox */
+        -ms-overflow-style: none; /* Hide scrollbar in IE and Edge */
+     
+      }
+      #vowelContainer::-webkit-scrollbar {
+        display: none; /* Hide scrollbar in Chrome, Safari, and Opera */
+      }
+
+      #vowelContainer:hover {
+        overflow-x: scroll;
+      }
+      .vowel-sort2 {
+        display: inline-block;
+        vertical-align: top;
+        margin-left: 5px; 
+
+      }
+
+      .vowel {
+        width: 70px;
+        height: 95px;
+        text-align: center;
+        margin-bottom: 5px;
+        vertical-align: top;
+        
+      }
+      .vowel-inner-box1 {
+        width: 70px;
+        height: 65px;
+        font-size: 30px;
+        align-items: center;
+        justify-content: center;
+        display: inline-flex;
+        flex-direction: column;
+        background-color: var(--bg-inner1);
+        color: var(--inner1-text);
+        /* font-family: 'Sarabun', sans-serif; */
+        background-image: url(images/loud-speaker.png);
+        background-size: 8px 8px;
+        background-repeat: no-repeat;
+        background-position: right 5px top 5px;
+        cursor: pointer;
+      }
+  
+      .vowel-inner-box2 {
+        width: 70px;
+        height: 30px;
+        background-color: var(--bg-inner2);
+        color: var(--inner2-text);
+        font-size: 15px;
+        font-family: 'Trirong', sans-serif;
+        font-weight: bold;
+      }
+
+
+      /* popup styles */
+      #popup{
+        z-index: 9050;
+      }
+      .popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        height: 80%;
+        border-radius: 10px;
+        padding: 20px;
+        border: 1px solid lightgray;
+        background-color: var(--bg-body);
+        color: var(--body-text);
+      }
+      .pop-close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+      }
+      .pop-consonant {
+        display: inline-block;
+        margin-left: 5px; 
+        text-align: center;
+        margin-bottom: 5px;
+        vertical-align: top;
+        margin-bottom: 5px;
+
+        
+      }
+      .pop-inner-box1 {
+        width: 100%;
+        font-size: 15px;
+        align-items: center;
+        justify-content: center;
+        display: inline-flex;
+        flex-direction: column;
+        font-family: 'Sarabun', sans-serif;
+        font-weight: bold;
+        background-color: var(--bg-inner1);
+        color: var(--inner1-text);
+
+      }
+  
+      .pop-inner-box2 {
+        width: 100%;
+        font-size: 18px;
+        font-family: 'Trirong', sans-serif;
+        max-width: 100px;
+        min-height: 65px;
+        align-items: center;
+        justify-content: center;
+      }
+      #pop1{
+          width: 100px;
+          height: 100px;
+          background-color: var(--bg-inner1);
+          color: var(--inner1-text);
+          font-size: 60px;
+          background-color: var(--bg-inner2);
+          color: var(--inner2-text);
+          background-image: url(images/loud-speaker.png);
+          background-size: 15px 15px;
+          background-repeat: no-repeat;
+          background-position: right 5px top 5px;
+          cursor: pointer;
+      
+    
+      }
+      .pop-pronounce{
+          border: 1px solid lightgray;
+          background-color: var(--bg-inner1);
+      }
+  
+  
+  
+      /* media styles */
+      @media (min-width: 640px) {
+        .box-70 {
+          width: 80px;
+          height: 120px;
+        }
+      
+      }
+      
+      @media (min-width: 768px) {
+        .box-70 {
+          width: 100px;
+          height: 100px;
+        }
+      }
+      
+      @media (min-width: 1024px) {
+        .box-70 {
+          width: 120px;
+          height: 120px;
+        }
+      }
+      .Sarabun{
+        font-family: 'Sarabun', sans-serif;
+      }
+      .Itim{
+        font-family: 'Itim', sans-serif;
+      }
+      .Sriracha{
+        font-family: 'Sriracha', sans-serif;
+      }
+      .IBM{
+        font-family: 'IBM Plex Sans Thai', sans-serif;
+      }
+
+      #consonants-container {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        gap: 5px;
+      }
+  
+      .button-container {
+      display: flex;
+      }
+  
+      .half-page-button {
+          flex: 1;
+          margin: 10px;
+          font-size: 30px;
+          background-color: var(--bg-inner1);
+          cursor: pointer;
+      }
+      #choice {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        gap: 5px;
+        
+      }
+      #info-area {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        gap: 5px;
+        padding-bottom: 200px;
+      }
+  
+      .tile {
+        border: 1px solid black;
+        padding: 1px;
+        text-align: center;
+        cursor: pointer;
+        font-size: 35px;
+        background-color: var(--bg-inner2);
+      }
+      .tile.selected {
+        background-color: lightgray;
+      }
+      .first-item-tile{
+          font-size: 20px;
+  
+      }
+      .second-item-tile{
+          font-size: 20px;
+          font-weight: bold;
+  
+      }
+      #playSound{
+          font-size: 40px;
+          border-radius: 10px;
+          background-color: var(--bg-inner2);
+          padding: 5px;
+          padding-right: 10px;
+          margin: 5px;
+          margin-bottom: 10px;
+      }
+  
+      #test-area{
+          margin-bottom: 60px;
+      }
+      #showConsonants, #showVowels{
+          flex: 1;
+          margin: 10px;
+          font-size: 30px;
+          background-color: var(--bg-inner2);
+          cursor: pointer;
+          padding-left: 20px;
+          padding-right: 20px;
+      }
+      #sort-learning-elements{
+          border-radius: 10px;
+          background-color: var(--bg-inner1);
+          padding: 5px;
+          padding-right: 10px;
+          margin: 5px;
+          margin-bottom: 10px;
+  
+      }
+      #page-two{
+          padding-top: 65px;
+      }
+  
