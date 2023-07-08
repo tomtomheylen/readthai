@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <canvas id="canvas" width="800" height="600"></canvas>
+    <button id="nextButton">Next Letter</button>
+    <button id="clearButton">Clear Drawing</button>
+  </body>
+</html>
+
+<script>
+let canvas = document.getElementById('canvas');
+let ctx = canvas.getContext('2d');
+
+// Create a Path2D object for the target path (a circle)
+let targetPath = new Path2D();
+targetPath.arc(100, 100, 50, 0, 2 * Math.PI);  // Parameters are x, y, radius, startAngle, endAngle
+
+// Draw the circle in dotted lines
+ctx.setLineDash([5, 15]);  // Parameters are dash length, gap length
+ctx.stroke(targetPath);
+
+let userPath = new Path2D();
+let hit = false;
+
+canvas.addEventListener('mousedown', function(e) {
+    userPath = new Path2D();
+    userPath.moveTo(e.clientX, e.clientY);
+});
+
+canvas.addEventListener('mousemove', function(e) {
+    if (e.buttons === 1) {
+        userPath.lineTo(e.clientX, e.clientY);
+        ctx.stroke(userPath);
+
+        // Check if the user's drawing intersects the target path
+        if (ctx.isPointInStroke(targetPath, e.clientX, e.clientY)) {
+            hit = true;
+        }
+    }
+});
+
+canvas.addEventListener('mouseup', function() {
+    if (hit) {
+        alert('Congratulations!');
+    } else {
+        alert('Try again!');
+    }
+    // Reset hit for the next drawing
+    hit = false;
+});
+
+</script>
