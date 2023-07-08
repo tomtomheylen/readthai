@@ -154,20 +154,41 @@ function stopDrawing() {
 
 
 // Helper function to get the position relative to the canvas
+// function getPosition(e) {
+//   let x, y;
+//   if (e.touches) {
+//     // Touch events
+//     const touch = e.touches[0];
+//     const rect = canvas.getBoundingClientRect();
+//     x = touch.clientX - rect.left;
+//     y = touch.clientY - rect.top;
+//   } else {
+//     // Mouse events
+//     const rect = canvas.getBoundingClientRect();
+//     x = e.clientX - rect.left;
+//     y = e.clientY - rect.top;
+//   }
+//   return [x, y];
+// }
+
+
 function getPosition(e) {
   let x, y;
+  const rect = canvas.getBoundingClientRect();
+  const scaleX = canvas.width / rect.width;    // relationship bitmap vs. element for X
+  const scaleY = canvas.height / rect.height;  // relationship bitmap vs. element for Y
+  
   if (e.touches) {
     // Touch events
     const touch = e.touches[0];
-    const rect = canvas.getBoundingClientRect();
-    x = touch.clientX - rect.left;
-    y = touch.clientY - rect.top;
+    x = (touch.clientX - rect.left) * scaleX;
+    y = (touch.clientY - rect.top) * scaleY;
   } else {
     // Mouse events
-    const rect = canvas.getBoundingClientRect();
-    x = e.clientX - rect.left;
-    y = e.clientY - rect.top;
+    x = (e.clientX - rect.left) * scaleX;
+    y = (e.clientY - rect.top) * scaleY;
   }
+  
   return [x, y];
 }
 

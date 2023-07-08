@@ -237,6 +237,8 @@ function scrollToBottom() {
 
 
 mode3Button.onclick = function() {
+   // var prefix = 'https://readthai.fun/';
+    var prefix = '';
 
     document.querySelector("#choice").innerHTML = '';
         document.querySelector("#test-result").innerHTML = '';
@@ -264,7 +266,7 @@ mode3Button.onclick = function() {
 
     const tile = document.createElement('div');
     tile.className = 'tile';
-    tile.style.backgroundImage = "url('https://readthai.fun/imgWrite/" + c[firstSymbolKey] + ".png')";
+    tile.style.backgroundImage = "url('"+prefix+"imgWrite/" + c[firstSymbolKey] + ".png')";
     tile.style.backgroundSize = "cover";
     tile.style.backgroundPosition = "center";
     
@@ -274,12 +276,19 @@ mode3Button.onclick = function() {
     tile.style.height = "50px"; // replace with desired height
 
     tile.onclick = function() {
-        var img = document.getElementById('imageDraw');
-        img.onload = function() {
-            openPopupDraw();//draw.js
-        }
-        img.src = 'https://readthai.fun/imgWrite/' + c[firstSymbolKey] + '.png'; 
+        const key = c[firstSymbolKey];
+        document.getElementById('easyDraw').src = `${prefix}imgWrite/${key}.png`;
+        document.getElementById('mediumDraw').src = `${prefix}imgWrite/${key}1.png`;
+        document.getElementById('hardDraw').src = `${prefix}imgWrite/${key}2.png`;
+    
+        const canvasDraw = document.getElementById('canvasDraw');
+        canvasDraw.style.backgroundImage = `url('${prefix}imgWrite/${key}.png')`;
+        canvasDraw.style.backgroundSize = "90% auto";
+        canvasDraw.style.backgroundRepeat = "no-repeat";
+        
+        openPopupDraw();
     };
+    
     
     document.querySelector('#choice').appendChild(tile);
 });
