@@ -294,7 +294,7 @@
       }
       #pop2{
         cursor: pointer;
-
+        width: 80px;
       }
       .pop-pronounce{
           border: 1px solid lightgray;
