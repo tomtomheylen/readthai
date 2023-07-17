@@ -355,12 +355,21 @@
           background-color: var(--bg-inner1);
           cursor: pointer;
       }
-      #choice {
+      /* #choice {
         display: grid;
         grid-template-columns: repeat(8, 1fr);
         gap: 5px;
         
+      } */
+
+      #choice {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(50px, 1fr)); /* Adjust the minimum and maximum width as needed */
+        gap: 5px;
+        max-width: 100%; /* Set a maximum width to prevent overflowing */
+        overflow-x: auto; /* Enable horizontal scrolling when necessary */
       }
+
       #info-area {
         display: grid;
         grid-template-columns: repeat(8, 1fr);
