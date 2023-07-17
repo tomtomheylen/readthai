@@ -337,7 +337,12 @@ mode3Button.onclick = function() {
 
 
         const canvasDraw = document.getElementById('canvasDraw');
-        canvasDraw.style.backgroundImage = `url('${prefix}imgWrite/${key}.png')`;
+        //canvasDraw.style.backgroundImage = `url('${prefix}imgWrite/${key}.png')`;
+        if(key === 'ฐ'){
+            canvasDraw.style.backgroundImage = `url('${prefix}imgWrite/${key}a.png')`;
+        }else{
+            canvasDraw.style.backgroundImage = `url('${prefix}imgWrite/a.png')`;
+        }
         canvasDraw.style.backgroundSize = "100% auto";
         canvasDraw.style.backgroundRepeat = "no-repeat";
         
