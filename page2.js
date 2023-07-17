@@ -219,7 +219,7 @@ mode2Button.onclick = function() {
       setTimeout(() => {
         tile.removeChild(info);
         tile.removeChild(info2);
-      }, 3000);
+      }, 1000);
 
     };
     document.querySelector('#info-area').appendChild(tile);
