@@ -40,6 +40,7 @@
   top: 0;
   left: 0;      /* add this to align the title to the right */
   z-index: 10;   /* optional, to ensure it's above the canvas */
+  color: black;
 }
 
 #canvasDraw {
@@ -103,6 +104,9 @@
   display: flex;      /* Convert the container into a flex container */
   align-items: center; /* Align items vertically in the middle */
   justify-content: center; /* Align items horizontally in the middle */
+}
+#prevButton, #nextButton{
+  font-weight: bold;
 }
 
 </style>
@@ -278,7 +282,7 @@
       <!-- <canvas id="canvasDraw"></canvas> -->
 
       <div id="canvasContainer">
-        <h1 id="canvasTitle"><img src="images/dot.png"><b> Start </b></h1>
+        <!-- <h1 id="canvasTitle"><img src="images/dot.png"><b> Start </b></h1> -->
         <canvas id="canvasDraw"></canvas>
       </div>
 

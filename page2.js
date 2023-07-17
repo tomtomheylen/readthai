@@ -322,17 +322,20 @@ mode3Button.onclick = function() {
             nextButton.innerHTML = '';
             prevButton.innerHTML = '';
         } else {
-            if (currentTileIndex >= tiles.length - 1) {
-                nextButton.innerHTML = '';
-            } else {
-                nextButton.innerHTML = '>';
-            }
+            nextButton.innerHTML = '>';
+            prevButton.innerHTML = '<';
+            
+            // if (currentTileIndex >= tiles.length - 1) {
+            //     nextButton.innerHTML = '';
+            // } else {
+            //     nextButton.innerHTML = '>';
+            // }
         
-            if (currentTileIndex <= 0) {
-                prevButton.innerHTML = '';
-            } else {
-                prevButton.innerHTML = '<';
-            }
+            // if (currentTileIndex <= 0) {
+            //     prevButton.innerHTML = '';
+            // } else {
+            //     prevButton.innerHTML = '<';
+            // }
         }
 
 
@@ -375,6 +378,9 @@ function next() {
   if (currentTileIndex < tiles.length - 1) {
     currentTileIndex++;
     tiles[currentTileIndex].click();
+  }else{
+    currentTileIndex = 0;
+    tiles[currentTileIndex].click();
   }
 }
 
@@ -382,6 +388,9 @@ function prev() {
   const tiles = document.querySelector('#choice').querySelectorAll('.tile');
   if (currentTileIndex > 0) {
     currentTileIndex--;
+    tiles[currentTileIndex].click();
+  }else{
+    currentTileIndex = tiles.length - 1;
     tiles[currentTileIndex].click();
   }
 }
