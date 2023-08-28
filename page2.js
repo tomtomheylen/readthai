@@ -15,8 +15,62 @@ document.getElementById('sort-learning-elements').addEventListener('click', () =
     }
 });
 
-function createLearningElements(elementSort = 'consonants', abc){//consonants, vowels or tones
+//update the selected consonants or vowels from local storage
+//is called at the end of createLearningElements and performs click to each
+function updateState(){
+    // Get all elements with class 'tile'
+    var tiles = document.querySelectorAll('.tile');
+    
+    if(tiles[0].textContent == 'ก'){
+        // Get localStorage array selectedConsonants
+        let selectedConsonants = JSON.parse(localStorage.getItem('selectedConsonants') || '[]');
+        
+        // Loop through selectedConsonants and add class to each tile where selectedConsonant == tile.textContent
+        tiles.forEach(function(tile) {
+            if (selectedConsonants.includes(tile.textContent)) {
+                tile.click();
+            }
+        });
+    } else {
+        // Same here for vowals
+        let selectedVowals = JSON.parse(localStorage.getItem('selectedVowals') || '[]');
+        
+        tiles.forEach(function(tile) {
+            if (selectedVowals.includes(tile.textContent)) {
+                tile.click();
+            }
+        });
+    }
+}
 
+  //save or update the selected consonants in local storage
+  //is called on cick tile in createLearningElements()
+  function saveState(){
+    var tiles = document.querySelectorAll('.tile.selected');
+    
+    if(document.querySelectorAll('.tile')[0].textContent == 'ก'){
+      //console.log('save consonants');
+      let selectedConsonants = [];
+      tiles.forEach(function(tile){
+        selectedConsonants.push(tile.textContent);
+      });
+      localStorage.setItem('selectedConsonants', JSON.stringify(selectedConsonants));
+  
+    } else {
+      //console.log('save vowals');
+      let selectedVowals = [];
+      tiles.forEach(function(tile){
+        selectedVowals.push(tile.textContent);
+      });
+      localStorage.setItem('selectedVowals', JSON.stringify(selectedVowals));
+    }
+}
+
+
+
+
+function createLearningElements(elementSort = 'consonants', abc){//consonants, vowels or tones abc = sort
+    
     selectedSymbols.splice(0, selectedSymbols.length); // Clear selectedSymbols array
 
         document.querySelector("#choice").innerHTML = '';
@@ -82,19 +136,25 @@ function createLearningElements(elementSort = 'consonants', abc){//consonants, v
 
             tile.className = 'tile';
             tile.onclick = function() {
+                
                 this.classList.toggle('selected');
                 if (selectedSymbols.includes(c)) {
                 selectedSymbols = selectedSymbols.filter(item => item !== c);
                 } else {
                 selectedSymbols.push(c);
                 }
+                saveState();
             };
             container.appendChild(tile);
         });
         applySelectedFont();
+        updateState();
 };
 
 mode1Button.onclick = function() {
+
+    saveState();
+    document.getElementById('debugInfo').innerHTML += selectedSymbols.map(obj => JSON.stringify(obj)).join(", ");
 
     document.querySelector("#choice").innerHTML = '';
         document.querySelector("#test-result").innerHTML = '';
@@ -174,7 +234,7 @@ mode1Button.onclick = function() {
 
 mode2Button.onclick = function() {
 
-    
+    saveState();
 
     if (selectedSymbols.length === 0) {
     alert("Select letters first");
@@ -241,6 +301,7 @@ function scrollToBottom() {
 
 
 mode3Button.onclick = function() {
+    saveState();
    // var prefix = 'https://readthai.fun/';
     var prefix = '';
 

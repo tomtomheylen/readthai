@@ -1,4 +1,4 @@
-createElements();
+ createElements();
 makeFirstLetterBold();
 createVowelElements();
 createLearningElements();
