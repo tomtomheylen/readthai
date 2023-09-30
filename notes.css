@@ -1,0 +1,150 @@
+* {
+    touch-action: manipulation;
+}
+
+#notes-button {
+    position: fixed;
+    top: 0; /* This will align it to the very top */
+    left: 50%;
+    transform: translateX(-50%);
+    vertical-align: top;
+    cursor: pointer;
+    font-size: 30px;
+    text-align: center;
+    z-index: 9999;
+}
+
+#popupNotes{
+    z-index: 9052;
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid lightgray;
+    background-color: var(--bg-body);
+    color: var(--body-text);
+    overflow-y: auto;
+
+  }
+
+  .note-title {
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.textfields {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.textfield {
+    flex: 1;
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+#tabs {
+    display: flex;         /* Use flexbox for horizontal alignment of tabs */
+    flex-wrap: wrap;       /* Allow wrapping if there are many tabs */
+    gap: 3px;             /* Space between tabs */
+    margin-top: 30px;
+}
+
+.tab-wrapper {
+    display: flex;           /* Use flexbox */
+    align-items: stretch;    /* Stretch items to fill the container */
+}
+
+.tab-button, .delete-tab, .add-tab {
+    height: 30px; /* Setting a fixed height */
+    line-height: 30px; /* Ensuring text is vertically centered */
+    box-sizing: border-box; 
+}
+
+.tab-button {
+    display: inline-block;
+    padding: 0 10px;  /* Adjusting padding to only be horizontal since we've set a fixed height */
+    cursor: pointer;
+    background-color: lightgray;
+    border: none;
+    margin-right: 0px;
+    outline: none;
+    margin-bottom: 2px;
+}
+
+.tab-button.active {
+    background-color: gray;
+    margin-right: 0px;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.tab-button[contenteditable="true"] {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    height: 44px; /* Match the height of the delete button */
+    line-height: 44px; /* Ensuring text is vertically centered */
+    padding: 0 15px;  /* Adjusting padding to only be horizontal and match delete button */
+}
+
+/* .delete-tab {
+    display: none; 
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0 9px;  
+    font-weight: bold;
+    background-color: red;
+    color: white;
+    border: none;
+    outline: none;
+    flex-grow: 1;
+} */
+
+.delete-tab {
+    display: none; 
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0 15px;  /* Increased padding for a larger touch target */
+    font-weight: bold;
+    background-color: red;
+    color: white;
+    border: none;
+    outline: none;
+    flex-grow: 1;
+    height: 44px; /* Ensuring a minimum height */
+    line-height: 44px; /* Ensuring text is vertically centered */
+    margin-right: 5px; /* Additional spacing to prevent accidental touches */
+    margin-left:30px;
+}
+
+
+
+.add-tab {
+    display: inline-block;
+    padding: 0 10px;  /* Adjusting padding to only be horizontal since we've set a fixed height */
+    cursor: pointer;
+    /* background-color: lightgray; */
+    border: none;
+    margin-right: 0px;
+    outline: none;
+    margin-bottom: 2px;
+    font-weight: bold;
+    font-size: 30px;
+}
