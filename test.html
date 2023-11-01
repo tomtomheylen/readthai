@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Translation Test</title>
+</head>
+<body>
+
+<input type="text" id="textToTranslate" placeholder="Enter text to translate" value="hello">
+<select id="targetLanguage">
+    <option value="es">Spanish</option>
+    <option value="fr">French</option>
+    <option value="de">German</option>
+    <!-- Add more languages as needed -->
+</select>
+<button onclick="translateText()">Translate</button>
+
+<p id="translatedText"></p>
+
+<script>
+async function translateText() {
+    const text = document.getElementById('textToTranslate').value;
+    const targetLanguage = document.getElementById('targetLanguage').value;
+    
+    try {
+        const response = await fetch('http://142.93.80.82/translate', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text, targetLanguage })
+        });
+        
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        
+        const data = await response.json();
+        document.getElementById('translatedText').innerText = data.data.translations[0].translatedText;
+    } catch (error) {
+        console.error('There has been a problem with your fetch operation:', error);
+    }
+}
+</script>
+
+</body>
+</html>
